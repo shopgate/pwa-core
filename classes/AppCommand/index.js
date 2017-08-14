@@ -108,7 +108,7 @@ class AppCommand {
    * @private
    */
   sendDevCommand() {
-    // Append a suffix for special endpoints.
+    // Append a suffix for certain endpoints.
     const suffix = this.command.c === 'getWebStorageEntry' ? 'web_storage' : '';
 
     const url = `http://${process.env.IP}:${process.env.PORT}/${suffix}`;
@@ -123,30 +123,32 @@ class AppCommand {
     fetch(url, options)
       .then(response => response.json())
       .then((response) => {
-        if (response.cmds.length) {
-          response.cmds.forEach((command) => {
-            const name = command.c;
-            const params = command.p;
-
-            let args = [];
-
-            /**
-             * The server returns a response command for a request command.
-             * If the native app receives such a command, it calls a related event within the
-             * webview. Here the response parameters are sorted in the specified order for
-             * the different response events.
-             */
-            if (name === 'pipelineResponse') {
-              args = [params.error, params.serial, params.output];
-            } else if (name === 'dataResponse') {
-              args = [params.serial, params.status, params.body, params.bodyContentType];
-            } else if (name === 'webStorageResponse') {
-              args = [params.serial, params.age, params.value];
-            }
-
-            event.call(name, args);
-          });
+        if (!response.cmds.length) {
+          return;
         }
+
+        response.cmds.forEach((command) => {
+          const name = command.c;
+          const params = command.p;
+
+          let args = [];
+
+          /**
+           * The server returns a response command for a request command.
+           * If the native app receives such a command, it calls a related event within the
+           * webview. Here the response parameters are sorted in the specified order for
+           * the different response events.
+           */
+          if (name === 'pipelineResponse') {
+            args = [params.error, params.serial, params.output];
+          } else if (name === 'dataResponse') {
+            args = [params.serial, params.status, params.body, params.bodyContentType];
+          } else if (name === 'webStorageResponse') {
+            args = [params.serial, params.age, params.value];
+          }
+
+          event.call(name, args);
+        });
       })
       .catch(err => err && logger.error(err));
   }

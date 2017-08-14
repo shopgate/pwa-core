@@ -16,7 +16,6 @@ npm i shopgate/pwa-core
 
   * [AppCommand](./classes/AppCommand)
   * [DatRequest](./classes/DatRequest)
-  * [Device](./classes/Device)
   * [Event](./classes/Event)
   * [Logger](./classes/Logger)
   * [PipelineManagers](./classes/PipelineManagers)
