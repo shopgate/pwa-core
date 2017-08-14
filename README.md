@@ -28,21 +28,21 @@ npm i shopgate/pwa-core
 
 ### Commands
 
-  * [broadcastEvent](./commands/README.md#broadcastEvent)
-  * [flushTab](./commands/README.md#flushTab)
-  * [hideMenuBar](./commands/README.md#hideMenuBar)
-  * [hideNavigationBar](./commands/README.md#hideNavigationBar)
+  * [broadcastEvent](./commands/README.md#broadcastevent)
+  * [flushTab](./commands/README.md#flushtab)
+  * [hideMenuBar](./commands/README.md#hidemenubar)
+  * [hideNavigationBar](./commands/README.md#hidenavigationbar)
   * [onload](./commands/README.md#onload)
-  * [openCart](./commands/README.md#openCart)
-  * [openPage](./commands/README.md#openPage)
-  * [openSearch](./commands/README.md#openSearch)
-  * [popTabToRoot](./commands/README.md#popTabToRoot)
-  * [registerEvents](./commands/README.md#registerEvents)
-  * [setDebugLoggingEnabled](./commands/README.md#setDebugLoggingEnabled)
-  * [showNavigationBar](./commands/README.md#showNavigationBar)
-  * [showTab](./commands/README.md#showTab)
-  * [unifiedTracking](./commands/README.md#unifiedTracking)
-  * [webStorage](./commands/README.md#webStorage)
+  * [openCart](./commands/README.md#opencart)
+  * [openPage](./commands/README.md#openpage)
+  * [openSearch](./commands/README.md#opensearch)
+  * [popTabToRoot](./commands/README.md#poptabtoroot)
+  * [registerEvents](./commands/README.md#registerevents)
+  * [setDebugLoggingEnabled](./commands/README.md#setdebugLoggingenabled)
+  * [showNavigationBar](./commands/README.md#shownavigationbar)
+  * [showTab](./commands/README.md#showtab)
+  * [unifiedTracking](./commands/README.md#unifiedtracking)
+  * [webStorage](./commands/README.md#webstorage)
 
 ### Helpers
 
