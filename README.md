@@ -46,5 +46,5 @@ npm i shopgate/pwa-core
 
 ### Helpers
 
-  * [ajaxUrl](./helpers/ajaxUrl)
-  * [hasSGJavascriptBridge](./helpers/hasSGJavascriptBridge)
+  * [ajaxUrl](./helpers/README.md#ajaxurl)
+  * [hasSGJavaScriptBridge](./helpers/README.md#hassgjavascriptbridge)

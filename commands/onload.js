@@ -6,14 +6,14 @@
  */
 
 import AppCommand from '../classes/AppCommand';
-import { hasSGJavascriptBridge } from '../helpers';
+import { hasSGJavaScriptBridge } from '../helpers';
 
 /**
  * Sends an onload command if in the native app environment.
  */
 export default () => {
   // This command is only needed inside an app environment.
-  if (!hasSGJavascriptBridge()) {
+  if (!hasSGJavaScriptBridge()) {
     return;
   }
 

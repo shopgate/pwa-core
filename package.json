@@ -1,5 +1,5 @@
 {
-  "name": "pwa-core",
+  "name": "@shopgate/pwa-core",
   "version": "1.0.0",
   "description": "Shopgate's PWA core library",
   "main": "index.js",

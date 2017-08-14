@@ -9,7 +9,7 @@
 
 import logger from '../Logger';
 import event from '../Event';
-import { hasSGJavascriptBridge } from '../../helpers';
+import { hasSGJavaScriptBridge } from '../../helpers';
 
 /**
  * The app command class.
@@ -53,7 +53,7 @@ class AppCommand {
       this.command.p = params;
     }
 
-    if (hasSGJavascriptBridge()) {
+    if (hasSGJavaScriptBridge()) {
       try {
         if ('dispatchCommandsForVersion' in SGJavascriptBridge) {
           SGJavascriptBridge.dispatchCommandsForVersion([this.command], this.libVersion);

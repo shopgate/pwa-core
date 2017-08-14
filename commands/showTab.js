@@ -7,7 +7,7 @@
 
 import AppCommand from '../classes/AppCommand';
 import logger from '../classes/Logger';
-import { hasSGJavascriptBridge } from '../helpers';
+import { hasSGJavaScriptBridge } from '../helpers';
 
 /**
  * Sends a showTab command to the app.
@@ -18,7 +18,7 @@ import { hasSGJavascriptBridge } from '../helpers';
  *                                      between 0 and 1 speeds up. Number above 1 reduces speed.
  */
 export default (params) => {
-  if (!hasSGJavascriptBridge()) {
+  if (!hasSGJavaScriptBridge()) {
     logger.warn('WARNING: \'showTab\' can only be called in an app environment!');
     return;
   }

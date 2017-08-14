@@ -16,6 +16,6 @@ export const ajaxUrl = action => (action ? `sgapi:${action}` : '');
  * Checks if the hasSGJavascriptBridge exists.
  * @return {boolean}
  */
-export function hasSGJavascriptBridge() {
+export function hasSGJavaScriptBridge() {
   return (typeof SGJavascriptBridge !== 'undefined');
 }
