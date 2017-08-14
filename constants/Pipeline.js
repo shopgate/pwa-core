@@ -11,6 +11,12 @@ export const CURRENT_VERSION = 1;
 // Pipeline timeout error.
 export const ETIMEOUT = 'ETIMEOUT';
 
+// Pipeline no access.
+export const EACCESS = 'EACCESS';
+
+// Pipeline invalid credentials.
+export const EINVALIDCREDENTIALS = 'EINVALIDCREDENTIALS';
+
 // Trusted pipeline string.
 export const TYPE_TRUSTED = 'trusted';
 

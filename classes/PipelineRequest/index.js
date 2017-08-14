@@ -5,17 +5,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import logger from './Logger';
-import event from './Event';
-import AppCommand from './AppCommand';
-import Request from './Request';
-import requestBuffer from './RequestBuffer';
-import { getPipelineManager } from './PipelineManagers';
+import logger from '../Logger';
+import event from '../Event';
+import AppCommand from '../AppCommand';
+import Request from '../Request';
+import requestBuffer from '../RequestBuffer';
+import { getPipelineManager } from '../PipelineManagers';
 import {
   CURRENT_VERSION,
   ETIMEOUT,
   TYPE_TRUSTED,
-} from '../constants/Pipeline';
+} from '../../constants/Pipeline';
 
 /**
  * The pipeline request class.

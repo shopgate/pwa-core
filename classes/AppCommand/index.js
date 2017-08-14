@@ -7,9 +7,9 @@
 
 /* global SGJavascriptBridge */
 
-import logger from './Logger';
-import event from './Event';
-import { hasSGJavascriptBridge } from '../helpers';
+import logger from '../Logger';
+import event from '../Event';
+import { hasSGJavascriptBridge } from '../../helpers';
 
 /**
  * The app command class.

@@ -5,12 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import RequestManager from './RequestManager';
+import RequestManager from '../RequestManager';
 import {
   PROCESS_LAST_REQUEST,
   PROCESS_SEQUENTIALLY,
   PROPAGATE_REJECT,
-} from '../constants/RequestManagerModes';
+} from '../../constants/RequestManagerModes';
 
 const PIPELINE_REQUEST_TIMEOUT = 20000;
 

@@ -6,8 +6,8 @@
  */
 
 import 'babel-polyfill';
-import Request from './Request';
-import RequestManager from './RequestManager';
+import Request from '../Request';
+import RequestManager from '../RequestManager';
 import {
   PROCESS_ANY,
   PROCESS_LAST_REQUEST,
@@ -16,7 +16,7 @@ import {
   PROCESS_ORDERED_REQUEST,
   PROPAGATE_REJECT,
   PROPAGATE_SINGLE,
-} from '../constants/RequestManagerModes';
+} from '../../constants/RequestManagerModes';
 
 /* eslint-disable require-jsdoc, no-unused-vars, class-methods-use-this */
 class SuccessfulRequest extends Request {

@@ -5,11 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import event from './Event';
-import logger from './Logger';
-import AppCommand from './AppCommand';
-import Request from './Request';
-import requestBuffer from './RequestBuffer';
+import event from '../Event';
+import logger from '../Logger';
+import AppCommand from '../AppCommand';
+import Request from '../Request';
+import requestBuffer from '../RequestBuffer';
 
 let localSerial = 0;
 

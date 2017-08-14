@@ -6,8 +6,8 @@
  */
 
 import CryptoJs from 'crypto-js';
-import RequestManager from './RequestManager';
-import logger from './Logger';
+import RequestManager from '../RequestManager';
+import logger from '../Logger';
 
 // The default request manager does not cache or treat requests in any special way.
 const defaultRequestManager = new RequestManager();

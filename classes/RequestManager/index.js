@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import logger from './Logger';
+import logger from '../Logger';
 import {
   PROCESS_ANY,
   PROCESS_LAST_REQUEST,
@@ -14,7 +14,7 @@ import {
   PROCESS_ORDERED_REQUEST,
   PROPAGATE_REJECT,
   PROPAGATE_SINGLE,
-} from '../constants/RequestManagerModes';
+} from '../../constants/RequestManagerModes';
 
 /**
  * Process only the latest request that has been sent.
