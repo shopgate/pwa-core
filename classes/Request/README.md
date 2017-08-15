@@ -14,7 +14,7 @@ class PipelineRequest extends Request {
 }
 ```
 
-See [PipelineRequest](./classes/PipelineRequest) for further example.
+See [PipelineRequest](../PipelineRequest) for further example.
 
 ## Methods and Properties
 
