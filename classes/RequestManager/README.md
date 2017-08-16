@@ -64,4 +64,4 @@ the corresponding reject Promise callback with an optional error message.
 
 Handles a received request response according to the `processingMode`.
 Therefore this method expects the actual request instance, 
-the corresponding resolve Promise callback with and the request response.
+the corresponding resolve Promise callback and the request response.
