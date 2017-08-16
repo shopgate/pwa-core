@@ -1,7 +1,7 @@
 # PipelineRequest
 
 The PipelineRequest class extends [Request](../Request).
-It provides functionality that deal with sending and receiving data requests.
+It provides functionality to deal with sending and receiving data requests.
 A Promise gets returned when a request is sent.
 
 ## Usage
