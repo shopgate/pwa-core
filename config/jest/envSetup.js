@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import injectTapEventPlugin from 'react-tap-event-plugin';
+const injectTapEventPlugin = require('react-tap-event-plugin');
 
 injectTapEventPlugin();
 

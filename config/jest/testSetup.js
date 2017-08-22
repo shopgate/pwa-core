@@ -5,13 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import chai from 'chai';
-import chaiEnzyme from 'chai-enzyme';
+const chai = require('chai');
+const chaiEnzyme = require('chai-enzyme');
 
 chai.use(chaiEnzyme);
 
 const localStorageMock = (() => {
   let store = {};
+
   return {
     getItem(key) {
       return store[key] || null;
