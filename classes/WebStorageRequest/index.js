@@ -6,7 +6,7 @@
  */
 
 import event from '../Event';
-import logger from '../Logger';
+import { logger } from '../../helpers';
 import AppCommand from '../AppCommand';
 import Request from '../Request';
 import requestBuffer from '../RequestBuffer';

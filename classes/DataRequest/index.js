@@ -5,12 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import logger from '../Logger';
 import event from '../Event';
 import AppCommand from '../AppCommand';
 import Request from '../Request';
 import requestBuffer from '../RequestBuffer';
-import { ajaxUrl } from '../../helpers';
+import { logger, ajaxUrl } from '../../helpers';
 
 /**
  * The DataRequest class. It's the interface to the legacy system.

@@ -8,9 +8,8 @@
 /* global SGJavascriptBridge */
 
 import fetch from 'isomorphic-fetch';
-import logger from '../Logger';
 import event from '../Event';
-import { hasSGJavaScriptBridge } from '../../helpers';
+import { logger, hasSGJavaScriptBridge } from '../../helpers';
 
 /**
  * The app command class.

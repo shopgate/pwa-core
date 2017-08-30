@@ -6,7 +6,7 @@
  */
 
 import EventEmitter from 'events';
-import logger from '../Logger';
+import { logger } from '../../helpers';
 
 const HANDLER_ADD = 'add';
 const HANDLER_REMOVE = 'remove';

@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import logger from '../Logger';
+import { logger } from '../../helpers';
 
 const REQUEST_BUFFER = 'RequestBuffer';
 
