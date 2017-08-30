@@ -1,4 +1,4 @@
-# Shopgate's PWA core library 
+# Shopgate's PWA core library
 ![](https://travis-ci.org/shopgate/pwa-core.svg?branch=master)
 
 This is the core library from Shopgate that handled pipeline requests, app commands and provides the basic app template.
@@ -18,7 +18,6 @@ npm i shopgate/pwa-core
   * [AppCommand](./classes/AppCommand)
   * [DataRequest](./classes/DataRequest)
   * [Event](./classes/Event)
-  * [Logger](./classes/Logger)
   * [PipelineManagers](./classes/PipelineManagers)
   * [PipelineRequest](./classes/PipelineRequest)
   * [Request](./classes/Request)

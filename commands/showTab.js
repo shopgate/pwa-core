@@ -6,8 +6,7 @@
  */
 
 import AppCommand from '../classes/AppCommand';
-import logger from '../classes/Logger';
-import { hasSGJavaScriptBridge } from '../helpers';
+import { logger, hasSGJavaScriptBridge } from '../helpers';
 
 /**
  * Sends a showTab command to the app.

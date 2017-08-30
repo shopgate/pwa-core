@@ -6,6 +6,12 @@
  */
 
 /**
+ * The logging wrapper for the console.
+ * @type {Object}
+ */
+export const logger = console;
+
+/**
  * Returns a URL for performing XHR Requests.
  * @param {string} action The action to request on the server.
  * @return {string} The full URL.
