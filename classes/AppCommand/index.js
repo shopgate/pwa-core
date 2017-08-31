@@ -36,7 +36,7 @@ class AppCommand {
 
   /**
    * Sets the library version of the app.
-   * @param {string} libVersion The custom library version.
+   * @param {string} libVersion The library version.
    * @returns {AppCommand}
    */
   setLibVersion(libVersion) {
@@ -77,8 +77,8 @@ class AppCommand {
         'getWebStorageEntry',
       ];
 
-      // Only commands which represent a request are sent to the dev server.
-      if (devServerCommands.indexOf(this.command.c) !== -1) {
+      // Only commands which represent a request are sent to the development server.
+      if (devServerCommands.includes(this.command.c)) {
         this.sendDevCommand();
       }
     }
@@ -134,17 +134,24 @@ class AppCommand {
           let args = [];
 
           /**
-           * The server returns a response command for a request command.
-           * If the native app receives such a command, it calls a related event within the
-           * webview. Here the response parameters are sorted in the specified order for
-           * the different response events.
+           * The server returns a response command for each request command.
+           * If the native app receives a response command, it calls a related event within the
+           * WebView.
+           * Here the response parameters are sorted in a specified order for each different
+           * type of response event.
            */
-          if (name === 'pipelineResponse') {
-            args = [params.error, params.serial, params.output];
-          } else if (name === 'dataResponse') {
-            args = [params.serial, params.status, params.body, params.bodyContentType];
-          } else if (name === 'webStorageResponse') {
-            args = [params.serial, params.age, params.value];
+          switch (name) {
+            case 'pipelineResponse':
+              args = [params.error, params.serial, params.output];
+              break;
+            case 'dataResponse':
+              args = [params.serial, params.status, params.body, params.bodyContentType];
+              break;
+            case 'webStorageResponse':
+              args = [params.serial, params.age, params.value];
+              break;
+            default:
+              break;
           }
 
           event.call(name, args);

@@ -12,7 +12,7 @@ import requestBuffer from '../RequestBuffer';
 import { logger, ajaxUrl } from '../../helpers';
 
 /**
- * The DataRequest class. It's the interface to the legacy system.
+ * The DataRequest class. It is the interface to the legacy system.
  */
 class DataRequest extends Request {
   /**
@@ -42,7 +42,7 @@ class DataRequest extends Request {
 
   /**
    * Decides if the response of the DataRequest will be cached
-   * @param {boolean} [noCache=true] If set to TRUE the DataResponse will not be cached
+   * @param {boolean} [noCache=true] If set to `true`, then the DataResponse will not be cached
    * @returns {DataRequest} The DataRequest
    */
   setNoCache(noCache = true) {
@@ -51,7 +51,7 @@ class DataRequest extends Request {
   }
 
   /**
-   * Determines the right content type for the request payload
+   * Determines the correct content type for the request payload.
    * @return {string} The content type
    */
   getContentType() {
@@ -68,7 +68,7 @@ class DataRequest extends Request {
   }
 
   /**
-   * Creates the data request body from the payload
+   * Creates the data request body from the payload.
    * @return {string} The request body
    */
   getRequestBody() {
@@ -145,7 +145,10 @@ class DataRequest extends Request {
         responsePayload = JSON.parse(responsePayload);
       }
 
-      logger.log(`dataResponse: ${this.src}`, { status, responsePayload });
+      logger.log(`dataResponse: ${this.src}`, {
+        status,
+        responsePayload,
+      });
 
       return resolve(responsePayload);
     };
