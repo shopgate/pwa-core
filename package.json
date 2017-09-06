@@ -2,19 +2,27 @@
   "name": "@shopgate/pwa-core",
   "version": "1.0.0",
   "description": "Shopgate's PWA core library",
-  "main": "index.js",
-  "repository": "https://github.com/shopgate/pwa-core",
+  "repository": "shopgate/pwa-core",
+  "bugs": "https://github.com/shopgate/pwa-core/issues",
+  "homepage": "https://github.com/shopgate/pwa-core",
   "author": "Support <support@shopgate.com>",
   "license": "Apache-2.0",
+  "keywords": [
+    "pwa",
+    "mobile",
+    "app",
+    "node"
+  ],
   "scripts": {
     "lint": "eslint --parser babel-eslint --ignore-path .gitignore  --ext .js .",
     "precommit": "lint-staged",
-    "test": "echo 'TODO'"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "lint-staged": {
     "concurrent": false,
     "linters": {
-      "*.js": "eslint --parser babel-eslint"
+      "*.js": "eslint --parser babel-eslint --ignore-path .gitignore  --ext .js ."
     }
   },
   "pre-commit": [
@@ -32,9 +40,14 @@
   },
   "devDependencies": {
     "@shopgate/eslint-config": "1.0.2",
+    "@shopgate/pwa-unit-test": "^1.0.0",
+    "babel-cli": "^6.26.0",
     "enzyme": "^2.9.1",
     "eslint": "3.19.0",
+    "jest": "^21.0.1",
     "lint-staged": "4.0.3",
-    "pre-commit": "1.2.2"
+    "pre-commit": "1.2.2",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
   }
 }
