@@ -33,35 +33,36 @@ registerEvents([
 
 /**
  * A callback that is invoked whenever the scanner recognized supported content.
- * @callback scanCallback
+ * @callback scanHandlerCallback
  * @param {ScannerDidScanPayload} data The event payload.
  */
 
 /**
- * The ScannerManager class. It's supposed to simplify the processes that are necessary to
- * interact with the scanner feature of the app. It provides the possiblity to register a callback
- * to handle the scanned barcode / qr code payload.
+ * The ScannerManager class. It's intendend to simplify the processes that are necessary to
+ * programmatically interact with the scanner feature of the app. It provides the possiblity to
+ * register a handler callback to process the scanned barcode / qr code payload.
  */
 class ScannerManager {
   /**
    * The ScannerManager constructor.
    * @param {Object} options Options for the ScannerManager.
-   * @param {boolean} [options.autoClose=true] If set to TRUE, the app scanner will close.
-   * @param {string} [options.errorPopupTitle=""] An optional custom title for the error popup.
-   * automatically after a successful scan.
+   * @param {boolean} [options.autoClose=true] If set to TRUE, the app scanner will close
+   *  automatically after a successful scan.
+   * @param {string} [options.notificationTitle=""] An optional custom title for the error
+   *   notification that is shown to the user in case of an error.
    */
   constructor(options = {}) {
     this.autoClose = options.autoClose || true;
-    this.errorPopupTitle = options.errorPopupTitle || 'Fehler';
+    this.notificationTitle = options.notificationTitle || null;
 
-    this.scanCallback = () => {};
+    this.scanHandlerCallback = () => {};
 
     /**
      * Create references to the app event handler fuctions. They preserve the "this" context of
      * a ScannerManager instance and can be used to register and unregister event listeners.
      */
-    this.scannerDidScanHandlerRef = this.scannerDidScanHandler.bind(this);
-    this.closeScannerHandlerRef = this.closeScanner.bind(this);
+    this.scannerDidScanCallback = this.scannerDidScanCallback.bind(this);
+    this.closeScanner = this.closeScanner.bind(this);
   }
 
   /**
@@ -69,14 +70,14 @@ class ScannerManager {
    * @private
    * @param {ScannerDidScanPayload} payload The event payload.
    */
-  scannerDidScanHandler(payload) {
+  scannerDidScanCallback(payload) {
     /**
      * Wrapper function to enable execution of async code within an EventEmitter callback.
      */
     const execScanCallback = async () => {
       try {
         // Invoke the callback.
-        await this.scanCallback(payload);
+        await this.scanHandlerCallback(payload);
         startScanner();
 
         if (this.autoClose) {
@@ -92,7 +93,7 @@ class ScannerManager {
         broadcastEvent({
           event: APP_EVENT_DISPLAY_SCANNER_ERROR,
           parameters: [{
-            title: this.errorPopupTitle,
+            title: this.notificationTitle,
             message,
           }],
         });
@@ -105,13 +106,14 @@ class ScannerManager {
   }
 
   /**
-   * Register a callback function that is invoked whenever the scanner recognized supported content.
-   * @param {scanCallback} callback The callback - async functions are supported.
+   * Register a callback to handle scanned content. Errors that are thrown inside will be displayed
+   * to the user as a notification, so that the webview can stay open for further scan attempts.
+   * @param {scanHandlerCallback} callback The callback - async functions are supported.
    * @return {ScannerManager}
    */
-  registerScanCallback(callback) {
+  registerScanHandler(callback) {
     if (typeof callback === 'function') {
-      this.scanCallback = callback;
+      this.scanHandlerCallback = callback;
     }
 
     return this;
@@ -123,9 +125,9 @@ class ScannerManager {
    */
   openScanner() {
     // Add a listener to the closeScanner event to react on a close button press in the scanner.
-    event.addListener(APP_EVENT_CLOSE_SCANNER, this.closeScannerHandlerRef);
+    event.addListener(APP_EVENT_CLOSE_SCANNER, this.closeScanner);
     // Add a listener to the scannerDidScan event to process scanner data.
-    event.addListener(APP_EVENT_SCANNER_DID_SCAN, this.scannerDidScanHandlerRef);
+    event.addListener(APP_EVENT_SCANNER_DID_SCAN, this.scannerDidScanCallback);
     // Open the scanner webview.
     openScanner();
     return this;
@@ -137,8 +139,8 @@ class ScannerManager {
    */
   closeScanner() {
     // Remove the listeners to avoid further execution by other instances.
-    event.removeListener(APP_EVENT_CLOSE_SCANNER, this.closeScannerHandlerRef);
-    event.removeListener(APP_EVENT_SCANNER_DID_SCAN, this.scannerDidScanHandlerRef);
+    event.removeListener(APP_EVENT_CLOSE_SCANNER, this.closeScanner);
+    event.removeListener(APP_EVENT_SCANNER_DID_SCAN, this.scannerDidScanCallback);
     // Close the scanner webview.
     closeScanner();
     return this;
