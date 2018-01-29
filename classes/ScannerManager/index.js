@@ -17,8 +17,10 @@ import broadcastEvent from '../../commands/broadcastEvent';
 const APP_EVENT_SCANNER_DID_SCAN = 'scannerDidScan';
 const APP_EVENT_CLOSE_SCANNER = 'closeScanner';
 const APP_EVENT_DISPLAY_SCANNER_ERROR = 'displayScannerError';
+const APP_EVENT_SCANNER_ERROR_BUTTON_CLICKED = 'scannerErrorButtonClicked';
 
 registerEvents([
+  APP_EVENT_SCANNER_ERROR_BUTTON_CLICKED,
   APP_EVENT_SCANNER_DID_SCAN,
   APP_EVENT_CLOSE_SCANNER,
 ]);
@@ -48,12 +50,9 @@ class ScannerManager {
    * @param {Object} options Options for the ScannerManager.
    * @param {boolean} [options.autoClose=true] If set to TRUE, the app scanner will close
    *  automatically after a successful scan.
-   * @param {string} [options.notificationTitle=""] An optional custom title for the error
-   *   notification that is shown to the user in case of an error.
    */
   constructor(options = {}) {
     this.autoClose = options.autoClose || true;
-    this.notificationTitle = options.notificationTitle || null;
 
     this.scanHandlerCallback = () => {};
 
@@ -78,22 +77,18 @@ class ScannerManager {
       try {
         // Invoke the callback.
         await this.scanHandlerCallback(payload);
-        startScanner();
 
         if (this.autoClose) {
           // Close the scanner after a successful scan.
           this.closeScanner();
         }
       } catch (error) {
-        const { message } = error;
-
-        startScanner();
-
+        const { message, title = null } = error;
         // Trigger an error message within the app scanner webview. When content processing failed.
         broadcastEvent({
           event: APP_EVENT_DISPLAY_SCANNER_ERROR,
           parameters: [{
-            title: this.notificationTitle,
+            title,
             message,
           }],
         });
@@ -108,6 +103,8 @@ class ScannerManager {
   /**
    * Register a callback to handle scanned content. Errors that are thrown inside will be displayed
    * to the user as a notification, so that the webview can stay open for further scan attempts.
+   * It's recommended to use the ScannerError for that purpose, since it provides the possiblity
+   * to set a message and a title for the notification.
    * @param {scanHandlerCallback} callback The callback - async functions are supported.
    * @return {ScannerManager}
    */
@@ -128,6 +125,8 @@ class ScannerManager {
     event.addListener(APP_EVENT_CLOSE_SCANNER, this.closeScanner);
     // Add a listener to the scannerDidScan event to process scanner data.
     event.addListener(APP_EVENT_SCANNER_DID_SCAN, this.scannerDidScanCallback);
+    // Add a listener to restart the scanner recognotion after the user accepted the notification.
+    event.addListener(APP_EVENT_SCANNER_ERROR_BUTTON_CLICKED, startScanner);
     // Open the scanner webview.
     openScanner();
     return this;
@@ -141,6 +140,7 @@ class ScannerManager {
     // Remove the listeners to avoid further execution by other instances.
     event.removeListener(APP_EVENT_CLOSE_SCANNER, this.closeScanner);
     event.removeListener(APP_EVENT_SCANNER_DID_SCAN, this.scannerDidScanCallback);
+    event.removeListener(APP_EVENT_SCANNER_ERROR_BUTTON_CLICKED, startScanner);
     // Close the scanner webview.
     closeScanner();
     return this;
