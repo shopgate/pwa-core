@@ -10,7 +10,6 @@ import event from '../../classes/Event';
 import openScanner from '../../commands/scanner/openScanner';
 import closeScanner from '../../commands/scanner/closeScanner';
 import startScanner from '../../commands/scanner/startScanner';
-import stopScanner from '../../commands/scanner/stopScanner';
 import registerEvents from '../../commands/registerEvents';
 import broadcastEvent from '../../commands/broadcastEvent';
 
@@ -95,8 +94,6 @@ class ScannerManager {
       }
     };
 
-    // Stop the scanner so that no furtner image recognotion happens while the payload is processed.
-    stopScanner();
     execScanCallback();
   }
 
@@ -125,7 +122,7 @@ class ScannerManager {
     event.addListener(APP_EVENT_CLOSE_SCANNER, this.closeScanner);
     // Add a listener to the scannerDidScan event to process scanner data.
     event.addListener(APP_EVENT_SCANNER_DID_SCAN, this.scannerDidScanCallback);
-    // Add a listener to restart the scanner recognotion after the user accepted the notification.
+    // Add a listener to restart the scanner recognition after the user accepted the notification.
     event.addListener(APP_EVENT_SCANNER_ERROR_BUTTON_CLICKED, startScanner);
     // Open the scanner webview.
     openScanner();
