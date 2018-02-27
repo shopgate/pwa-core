@@ -51,7 +51,7 @@
     "babel-runtime": "^6.26.0",
     "coveralls": "^3.0.0",
     "jest": "^22.0.4",
-    "lint-staged": "^4.2.3",
+    "lint-staged": "^7.0.0",
     "pre-commit": "1.2.2",
     "rimraf": "^2.6.2"
   }
