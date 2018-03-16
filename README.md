@@ -1,3 +1,5 @@
+> ## Attention: This repository has moved. For the latest version please check [@shopgate/pwa](https://github.com/shopgate/pwa/tree/master/libraries/core)
+
 # Shopgate's PWA core library
 
 [![Travis CI Build](https://travis-ci.org/shopgate/pwa-core.svg?branch=master)](https://travis-ci.org/shopgate/pwa-core)
